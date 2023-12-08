@@ -40,5 +40,13 @@ To run the script, first make sure you add the spotify links in the `urls.txt` f
     ```sh
     make run FORMAT={mp3,flac,ogg,opus,m4a,wav} OUT="filepath"
     ```
-
+#### Example `urls.txt`
+Here you can add individual tracks, albums, playlist, artist.
+```txt
+https://open.spotify.com/track/3BQHpFgAp4l80e1XslIjNI?si=1694ec4cd9b64747
+https://open.spotify.com/album/3KzAvEXcqJKBF97HrXwlgf?si=kBwTQYtUQzG4GJO-X5dyqQ
+https://open.spotify.com/playlist/37i9dQZF1DZ06evO2iBPiw?si=55d0fbfe69a54668
+https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2?si=xtuxzf2bQUet4KsMI7Ldwg
+```
+#### Errors
 If you encounter any errors, look at `errors.log` to look at the tracks that could not be downloaded.
