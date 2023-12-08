@@ -36,9 +36,9 @@ To run the script, first make sure you add the spotify links in the `urls.txt` f
     make run
     ```
     By default, the script downloads the music in a .mp3 format.
-* Custom download
+* Custom download with output path
     ```sh
-    make run FORMAT={mp3,flac,ogg,opus,m4a,wav}
+    make run FORMAT={mp3,flac,ogg,opus,m4a,wav} OUT="filepath"
     ```
 
 If you encounter any errors, look at `errors.log` to look at the tracks that could not be downloaded.
