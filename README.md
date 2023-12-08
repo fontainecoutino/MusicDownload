@@ -28,7 +28,7 @@ This script downloads music from Spotify. Due to legal reasons, this script is i
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-To run the script, first, ensure you add the Spotify links in the `urls.txt file`. One link per line.
+To run the script, first, ensure you add the Spotify links in the `urls.txt` file. One link per line.
 ### Mac
 * Default download
     ```sh
