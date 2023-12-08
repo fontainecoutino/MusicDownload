@@ -10,7 +10,7 @@ def exec_cmd(cmd:str):
         print(cmd, p.args)
 
 # constants
-OUTPUT_DIR = "music"
+OUTPUT_DIR = sys.argv[2]
 TEMP_DIR = OUTPUT_DIR
 FILE_NAME = "urls.txt" 
 ERR_FILE_NAME = "errors.log"
@@ -34,9 +34,7 @@ flags = [
     '--output "%s/%s{artist}%s{album}%s{disc-number}%s{track-number}%s{title}"' % (TEMP_DIR, DEL, DEL, DEL, DEL, DEL)
 ]
 
-output_fmt = "mp3"
-if len(sys.argv[1:]) == 1:
-    output_fmt = sys.argv[1]
+output_fmt = sys.argv[1]
 if output_fmt not in ['mp3','flac','ogg','opus','m4a','wav']:
     sys.exit('Please select a proper output format {mp3,flac,ogg,opus,m4a,wav}')
 flags.append("--format %s" % (output_fmt))
