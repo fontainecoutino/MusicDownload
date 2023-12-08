@@ -8,3 +8,8 @@ FORMAT?=mp3
 .PHONY: run
 run:  #  Run download script. Change file format (default mp3) by setting env "make run FORMAT={mp3,flac,ogg,opus,m4a,wav}"
 	python3 download.py ${FORMAT}
+
+.PHONY: setup
+setup: # Setup dependencies
+	pip install spotdl
+	spotdl --download-ffmpeg
