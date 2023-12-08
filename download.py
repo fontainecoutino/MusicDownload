@@ -11,7 +11,7 @@ def exec_cmd(cmd:str):
 
 # constants
 OUTPUT_DIR = "music"
-TEMP_DIR = "temp"
+TEMP_DIR = OUTPUT_DIR
 FILE_NAME = "urls.txt" 
 ERR_FILE_NAME = "errors.log"
 ERR_FILE = "%s/%s" % (OUTPUT_DIR, ERR_FILE_NAME)
@@ -29,9 +29,9 @@ flags = [
     '--scan-for-songs --overwrite skip', 
     '--add-unavailable',
     '--max-retries 100',
-    '--audio youtube-music youtube',
+    '--audio youtube-music youtube soundcloud bandcamp piped slider-kz',
     '--save-errors %s' % (ERR_FILE),
-    '--output "%s/{artist}%s{album}%s{disc-number}%s{track-number}%s{title}"' % (TEMP_DIR, DEL, DEL, DEL, DEL)
+    '--output "%s/%s{artist}%s{album}%s{disc-number}%s{track-number}%s{title}"' % (TEMP_DIR, DEL, DEL, DEL, DEL, DEL)
 ]
 
 output_fmt = "mp3"
@@ -56,11 +56,11 @@ if os.stat(ERR_FILE).st_size != 0: # log error
 # Organize music into the directories
 music = {}
 for f in listdir('%s' %(TEMP_DIR)):
-    if f == ERR_FILE_NAME:
+    if not f.startswith(DEL):
         continue
     
     # get metadata from file name
-    m = f.replace('"', '').split(DEL)
+    m = f.replace('"', '').split(DEL)[1:]
     md = {
         "artist": m[0], "album": m[1], "disc_number": m[2], 
         "track_num": m[3], "track_name": m[4], "file_name": f
@@ -112,4 +112,5 @@ for artist in music:
 #             if len(os.listdir(album_path)) == 0:  
 #                 exec_cmd("rm -rf %s" % (album_path))
 
-exec_cmd("rm -rf %s" % (TEMP_DIR))
+if TEMP_DIR != OUTPUT_DIR:
+    exec_cmd("rm -rf %s" % (TEMP_DIR))
