@@ -13,3 +13,4 @@ run:  #  Run download script. Change file format (default mp3) by setting env "m
 setup: # Setup dependencies
 	pip install spotdl
 	spotdl --download-ffmpeg
+	touch urls.txt
