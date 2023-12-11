@@ -34,8 +34,8 @@ This script downloads music from Spotify. Due to legal reasons, this script is i
 To run the script, first, ensure you add the Spotify links in the `urls.txt` file. One link per line. 
 
 <p float="left">
-    <img src="img/img1.png" alt="image" width="300" height="auto">
-    <img src="img/img2.png" alt="image" width="300" height="auto">
+    <img src="img/img1.png" alt="image" height="300" width="auto">
+    <img src="img/img2.png" alt="image" height="300" width="auto">
 </p>
 
 #### 2. Run
