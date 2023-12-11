@@ -31,10 +31,12 @@ This script downloads music from Spotify. Due to legal reasons, this script is i
 
 ### Mac
 #### 1. Add spotify urls to file
-To run the script, first, ensure you add the Spotify links in the `urls.txt` file. One link per line.
+To run the script, first, ensure you add the Spotify links in the `urls.txt` file. One link per line. 
 
-![Profile img](img/img1.png = 200x200 ) ![Options img](img/img2.png  = 200x200)
-
+<p float="left">
+    <img src="img/img1.png" alt="image" width="250" height="auto">
+    <img src="img/img1.png" alt="image" width="250" height="auto">
+</p>
 
 #### 2. Run
 * Default download
