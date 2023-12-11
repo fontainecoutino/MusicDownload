@@ -67,27 +67,30 @@ for f in listdir('%s' %(TEMP_DIR)):
         md["disc_number"] = int(md["disc_number"])
     else:
         md["disc_number"] = 1
-           
+    
+    if md["disc_number"] > 1:
+        md["album"] = '%s - Disc %s' % (md["album"], str(md["disc_number"]))
+    
     # create artist and/or album
     if md["artist"] not in music:
         music[md["artist"]] = {}
-    if md["album"] not in music[md["artist"]] and md["disc_number"] == 1:
+    if md["album"] not in music[md["artist"]]:
         music[md["artist"]][md["album"]] = {}
-        
-    # check if "- Disc #" needs to be added
-    if md["disc_number"] > 1:
-        if md["album"] in music[md["artist"]]: # disc 1 was already created
-            disc1_data = music[md["artist"]][md["album"]]
-            del music[md["artist"]][md["album"]]
-            music[md["artist"]]['%s - Disc 1' % (md["album"])] = disc1_data
-        
-        md["album"] = '%s - Disc %s' % (md["album"], str(md["disc_number"]))
-        if md["album"] not in music[md["artist"]]:
-            music[md["artist"]][md["album"]] = {}
     
+    # store
     tn = '%s %s' % (md["track_num"], md["track_name"])
     music[md["artist"]][md["album"]][tn] = md["file_name"]
 
+# Check if inclusion of '- Dis1' is needed
+for artist in music:
+    for album in music[artist]:
+        d_name = '%s - Disc 1' % (md["album"])
+        for ab in music[md["artist"]]: # if other disc from album already exist
+            if "- Disc" in ab:
+                disc1_data = music[md["artist"]][md["album"]]
+                del music[md["artist"]][md["album"]]
+                music[md["artist"]][d_name] = disc1_data
+        
 # Move to music folder
 for artist in music:
     exec_cmd('mkdir -p "%s/%s"' % (OUTPUT_DIR, artist))
