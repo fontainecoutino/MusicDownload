@@ -38,6 +38,16 @@ To run the script, first, ensure you add the Spotify links in the `urls.txt` fil
     <img src="img/img2.png" alt="image" height="300" width="auto">
 </p>
 
+
+##### Example `urls.txt`
+Here you can add individual tracks, albums, playlists, or artists.
+```txt
+https://open.spotify.com/track/3BQHpFgAp4l80e1XslIjNI?si=1694ec4cd9b64747
+https://open.spotify.com/album/3KzAvEXcqJKBF97HrXwlgf?si=kBwTQYtUQzG4GJO-X5dyqQ
+https://open.spotify.com/playlist/37i9dQZF1DZ06evO2iBPiw?si=55d0fbfe69a54668
+https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2?si=xtuxzf2bQUet4KsMI7Ldwg
+```
+
 #### 2. Run
 * Default download
     ```sh
@@ -49,14 +59,6 @@ To run the script, first, ensure you add the Spotify links in the `urls.txt` fil
     ```sh
     make run FORMAT={mp3,flac,ogg,opus,m4a,wav} OUT="filepath"
     ```
-#### Example `urls.txt`
-Here you can add individual tracks, albums, playlists, or artists.
-```txt
-https://open.spotify.com/track/3BQHpFgAp4l80e1XslIjNI?si=1694ec4cd9b64747
-https://open.spotify.com/album/3KzAvEXcqJKBF97HrXwlgf?si=kBwTQYtUQzG4GJO-X5dyqQ
-https://open.spotify.com/playlist/37i9dQZF1DZ06evO2iBPiw?si=55d0fbfe69a54668
-https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2?si=xtuxzf2bQUet4KsMI7Ldwg
-```
 
 <!-- USAGE EXAMPLES -->
 ## Troubleshooting
