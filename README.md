@@ -28,13 +28,21 @@ This script downloads music from Spotify. Due to legal reasons, this script is i
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-To run the script, first, ensure you add the Spotify links in the `urls.txt` file. One link per line.
+
 ### Mac
+#### 1. Add spotify urls to file
+To run the script, first, ensure you add the Spotify links in the `urls.txt` file. One link per line.
+
+![Profile img](img/img1.png = 200x200 ) ![Options img](img/img2.png  = 200x200)
+
+
+#### 2. Run
 * Default download
     ```sh
     make run
     ```
     By default, the script downloads the music in .mp3 format.
+
 * Custom download with output path
     ```sh
     make run FORMAT={mp3,flac,ogg,opus,m4a,wav} OUT="filepath"
