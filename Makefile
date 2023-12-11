@@ -15,5 +15,6 @@ run:  #  Run download script. Change file format (default mp3) by setting env "m
 .PHONY: setup
 setup: # Setup dependencies
 	pip install spotdl
-	spotdl --download-ffmpeg
+	brew update && brew upgrade
+	brew install ffmpeg
 	touch urls.txt
