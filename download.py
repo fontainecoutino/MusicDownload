@@ -35,7 +35,7 @@ def download():
         '--max-retries 100',
         '--audio youtube-music youtube soundcloud bandcamp piped slider-kz',
         '--save-errors %s' % (ERR_FILE),
-        '--output "%s/%s{artist}%s{album}%s{disc-number}%s{track-number}%s{title}"' % (TEMP_DIR, DEL, DEL, DEL, DEL, DEL)
+        '--output "%s/%s{album-artist}%s{album}%s{disc-number}%s{track-number}%s{title}"' % (TEMP_DIR, DEL, DEL, DEL, DEL, DEL)
     ]
 
     output_fmt = sys.argv[1]
@@ -65,8 +65,9 @@ def organize():
         # get metadata from file name
         m = f.replace('"', '').split(DEL)[1:]
         md = {
-            "artist": m[0], "album": m[1], "disc_number": m[2], 
-            "track_num": m[3], "track_name": m[4], "file_name": f
+            "artist": m[0], "album_name": m[1], "disc_number": m[2], 
+            "track_num": m[3], "track_name": m[4], 
+            "file_name": f, "album": '%s %s' % (m[0], m[1])
             }
         if md["disc_number"].isnumeric():
             md["disc_number"] = int(md["disc_number"])
@@ -75,36 +76,32 @@ def organize():
         
         if md["disc_number"] > 1:
             md["album"] = '%s - Disc %s' % (md["album"], str(md["disc_number"]))
+            md["album_name"] = '%s - Disc %s' % (md["album_name"], str(md["disc_number"]))
         
         # create artist and/or album
-        if md["artist"] not in music:
-            music[md["artist"]] = {}
-        if md["album"] not in music[md["artist"]]:
-            music[md["artist"]][md["album"]] = {}
+        if md["album"] not in music:
+            music[md["album"]] = {"album_name": md["album_name"]}
         
         # store
         tn = '%s %s' % (md["track_num"], md["track_name"])
-        music[md["artist"]][md["album"]][tn] = md["file_name"]
+        music[md["album"]][tn] = md["file_name"]
 
-    # Check if inclusion of '- Dis1' is needed
-    for artist in music:
-        for album in music[artist]:
-            d_name = '%s - Disc 1' % (md["album"])
-            for ab in music[md["artist"]]: # if other disc from album already exist
-                if "- Disc" in ab:
-                    disc1_data = music[md["artist"]][md["album"]]
-                    del music[md["artist"]][md["album"]]
-                    music[md["artist"]][d_name] = disc1_data
+    # Check if inclusion of '- Disc1' is needed
+    for album in music:
+        for ab in music: # if other disc from album already exist
+            if "- Disc" in ab and album in ab :
+                music[album]["album_name"] = '%s - Disc 1' % (music[album]["album_name"])
+                break
             
     # Move to music folder
-    for artist in music:
-        exec_cmd('mkdir -p "%s/%s"' % (OUTPUT_DIR, artist))
-        for album in music[artist]:
-            exec_cmd('mkdir -p "%s/%s/%s"' % (OUTPUT_DIR, artist, album))
-            for song, f_name in music[artist][album].items():
-                new_path = '"%s/%s/%s/%s"' % (OUTPUT_DIR, artist, album, song)
-                curr_path = '"%s/%s"' % (TEMP_DIR, f_name)
-                exec_cmd("mv %s %s" % (curr_path, new_path)) 
+    for album in music:
+        exec_cmd('mkdir -p "%s/%s"' % (OUTPUT_DIR, music[album]["album_name"])) 
+        for song, f_name in music[album].items():
+            if song == "album_name":
+                continue
+            new_path = '"%s/%s/%s"' % (OUTPUT_DIR, music[album]["album_name"], song)
+            curr_path = '"%s/%s"' % (TEMP_DIR, f_name)
+            exec_cmd("mv %s %s" % (curr_path, new_path)) 
 
     if TEMP_DIR != OUTPUT_DIR:
         exec_cmd("rm -rf %s" % (TEMP_DIR))
