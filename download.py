@@ -23,6 +23,20 @@ def file_check():
         sys.exit('Please create a file "urls.txt" in this directoty and add urls in separate lines that you want downloaded.')
         
     # remove si tag from url if present
+    try:
+        with open(FILE_NAME, 'r') as file:
+            lines = file.readlines()
+
+        with open(FILE_NAME, 'w') as file:
+            for line in lines:
+                # Remove text after '?'
+                line = line.split('?')[0] + '\n'
+                file.write(line)
+
+    except FileNotFoundError:
+        print(f"Error: File '{FILE_NAME}' not found.")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
 
 def download():
     # Set flags
