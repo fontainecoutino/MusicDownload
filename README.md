@@ -4,7 +4,7 @@ Script to download music from Spotify
 
 ## About The Project
 
-This script downloads music from Spotify. Due to legal reasons, this script is intended for personal use only, and no monetization will be pursued.
+This script downloads music from Spotify with [spotDL](https://github.com/spotDL/spotify-downloader). This is mainly for me to remember stuff.
 
 <!-- GETTING STARTED -->
 ## Getting Started
