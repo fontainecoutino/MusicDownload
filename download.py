@@ -15,7 +15,7 @@ DEL = "_##_"
 def main():
     file_check()
     download()
-    organize()
+    #organize()
 
 def file_check():
     # File check
@@ -43,13 +43,13 @@ def download():
     flags = [
         '--lyrics genius', 
         '--preload', 
-        '--restrict ascii',
+        '--restrict nonde',
         '--scan-for-songs --overwrite skip', 
         '--add-unavailable',
         '--max-retries 100',
         '--audio youtube-music youtube soundcloud bandcamp piped slider-kz',
         '--save-errors %s' % (ERR_FILE),
-        '--output "%s/%s{album-artist}%s{album}%s{disc-number}%s{track-number}%s{title}"' % (TEMP_DIR, DEL, DEL, DEL, DEL, DEL)
+        '--output "%s/{artists} - {title}"' % (TEMP_DIR, DEL, DEL, DEL, DEL, DEL)
     ]
 
     output_fmt = sys.argv[1]
