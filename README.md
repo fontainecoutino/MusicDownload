@@ -34,8 +34,7 @@ This script downloads music from Spotify with [spotDL](https://github.com/spotDL
 To run the script, first, ensure you add the Spotify links in the `urls.txt` file. One link per line. 
 
 <p float="left">
-    <img src="img/img1.png" alt="image" height="300" width="auto">
-    <img src="img/img2.png" alt="image" height="300" width="auto">
+    <img src="img/img1.png" alt="image" height="500" width="auto"> 
 </p>
 
 
